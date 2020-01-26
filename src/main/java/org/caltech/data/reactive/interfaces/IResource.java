@@ -1,6 +1,9 @@
 package org.caltech.data.reactive.interfaces;
 
 import org.caltech.data.reactive.abstracts.AbstractDomain;
+import org.caltech.data.reactive.generics.PageableResponse;
+import org.caltech.data.reactive.generics.RegularResponse;
+import org.springframework.data.domain.Pageable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -10,10 +13,10 @@ import java.io.Serializable;
  * @author Weverton Souza.
  * Created on 19/09/19
  */
-public interface IResource<DOMAIN extends AbstractDomain, K extends Serializable> {
-        Mono<DOMAIN> save(final DOMAIN resource);
-        Mono<DOMAIN> update(final DOMAIN resource);
-        Mono<DOMAIN> findById(final K id);
-        Flux<DOMAIN> findAll(final int page, final int size);
-        void delete(K id);
+public interface IResource<DOMAIN extends AbstractDomain, KEY extends Serializable> {
+        Mono<RegularResponse<DOMAIN>> save(final DOMAIN resource);
+        Mono<RegularResponse<DOMAIN>> update(final DOMAIN resource);
+        Mono<RegularResponse<DOMAIN>> findById(final KEY id);
+        Mono<PageableResponse<DOMAIN>> findAll(final Pageable pageable);
+        void delete(KEY id);
 }

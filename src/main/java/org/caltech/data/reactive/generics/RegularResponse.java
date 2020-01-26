@@ -21,8 +21,6 @@ public class RegularResponse<CONTENT> extends Response<CONTENT> {
         private HttpStatus status;
         private String description;
 
-        private Builder() {}
-
         public Builder<?> content(Object content) {
             this.content = (CONTENT) content;
             return this;
